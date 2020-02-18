@@ -30,8 +30,8 @@ public class Program {
     Scanner scan = new Scanner(System.in);
     Stream<String> text1 = Files.lines(Paths.get("text1"));
     Stream<String> text2 = Files.lines(Paths.get("text2"));
-
-
+    String pn6 = "08-12 34 565444444443123123123123";
+    String bdate6 = "1990-08-21 1234123123123123123";
     public Program() throws IOException {
         checkPhoneNumbers();
         checkEmail();
@@ -46,6 +46,7 @@ public class Program {
         System.out.printf("Phonenumber %s is %s\n", pn3, validatePhoneNumber(pn3));
         System.out.printf("Phonenumber %s is %s\n", pn4, validatePhoneNumber(pn4));
         System.out.printf("Phonenumber %s is %s\n", pn5, validatePhoneNumber(pn5));
+        System.out.printf("Phonenumber %s is %s\n", pn6, validatePhoneNumber(pn6));
     }
     public void checkEmail(){
         System.out.printf("E-mail %s is %s\n", eMail1, validateEMail(eMail1));
@@ -59,6 +60,7 @@ public class Program {
         System.out.printf("Bday %s is %s\n", bdate3, validateBirthdate(bdate3));
         System.out.printf("Bday %s is %s\n", bdate4, validateBirthdate(bdate4));
         System.out.printf("Bday %s is %s\n", bdate5, validateBirthdate(bdate5));
+        System.out.printf("Bday %s is %s\n", bdate6, validateBirthdate(bdate6));
     }
 
     public void checkPassword(){
@@ -83,7 +85,7 @@ public class Program {
     }
 
     public boolean validatePhoneNumber(String phoneNumber){
-        return phoneNumber.matches("[\\d]+-?[\\d]+ ?[\\d]+ ?[\\d]+ ?[\\d]+");
+        return phoneNumber.replaceAll("[- ]", "").matches("[\\d]{8,10}");
     }
 
     public boolean validateEMail(String eMail){
@@ -91,7 +93,7 @@ public class Program {
     }
 
     public boolean validateBirthdate(String birthdate){
-        return birthdate.matches("[\\d]+([-+])?[\\d]+([- ])?[\\d]+ ?[\\d]+");
+        return birthdate.replaceAll("[- +]", "").matches("[\\d]{10,12}");
     }
 
     public boolean validatePassword(String password){
